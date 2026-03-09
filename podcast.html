@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Scopri i podcast di Maura Gancitano: Scuola di Filosofie, Pensare Europeo, Meno per meno e Tlon – Il podcast.">
+    <title>Podcast — Maura Gancitano</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <header>
+        <a href="./" class="logo">
+            <span class="leaf-signal"></span>
+            Maura <em>Gancitano</em>
+        </a>
+        <nav>
+            <a href="libri.html">Libri</a>
+            <a href="ricerca.html">Ricerca</a>
+            <a href="podcast.html">Podcast</a>
+            <a href="contatti.html">Contatti</a>
+            <div class="lang-switch">
+                <a href="podcast.html" class="active">IT</a>
+                <a href="en/podcast.html">EN</a>
+                <a href="es/podcast.html">ES</a>
+                <a href="zh/podcast.html">ZH</a>
+            </div>
+        </nav>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="libri.html">Libri</a>
+        <a href="ricerca.html">Ricerca</a>
+        <a href="podcast.html">Podcast</a>
+        <a href="contatti.html">Contatti</a>
+        <div class="mobile-lang-switch">
+            <a href="podcast.html" class="active">IT</a>
+            <a href="en/podcast.html">EN</a>
+            <a href="es/podcast.html">ES</a>
+            <a href="zh/podcast.html">ZH</a>
+        </div>
+    </div>
+
+    <main>
+        <section class="page-header">
+            <h1 class="page-title">Podcast</h1>
+            <p class="page-subtitle">Conversazioni, dibattiti e riflessioni sul pensiero contemporaneo, ideologie, tecnologie e trasformazioni sociali.</p>
+        </section>
+
+        <section class="section reveal">
+            <div class="section-content">
+                <div class="podcast-grid">
+                    <div class="podcast-item">
+                        <div>
+                            <div class="podcast-title">Scuola di Filosofie</div>
+                            <div class="podcast-meta">Audible · con Andrea Colamedici</div>
+                        </div>
+                        <div class="podcast-desc">Un percorso in due stagioni attraverso i grandi pensatori del Novecento, dalla fenomenologia all'esistenzialismo, dalla filosofia della mente alla teoria critica, per applicare le loro intuizioni alla vita quotidiana.</div>
+                    </div>
+
+                    <div class="podcast-item">
+                        <div>
+                            <div class="podcast-title">Pensare Europeo</div>
+                            <div class="podcast-meta">Parlamento Europeo · con Andrea Colamedici</div>
+                        </div>
+                        <div class="podcast-desc">Un ciclo di incontri per potenziare il senso di appartenenza alla comunità europea, mettendo in connessione eurodeputati con filosofi, attivisti, storici e artisti italiani.</div>
+                    </div>
+
+                    <div class="podcast-item">
+                        <div>
+                            <div class="podcast-title">Meno per meno</div>
+                            <div class="podcast-meta">RaiPlaySound · con Niccolò Fabi</div>
+                        </div>
+                        <div class="podcast-desc">Dieci incontri che partono dalle canzoni scelte da Niccolò Fabi per celebrare i suoi 25 anni di carriera, trasformando i testi in scintille per affrontare tematiche disparate.</div>
+                    </div>
+
+                    <div class="podcast-item">
+                        <div>
+                            <div class="podcast-title">Tlon – Il podcast</div>
+                            <div class="podcast-meta">Tutte le piattaforme</div>
+                        </div>
+                        <div class="podcast-desc">Interviste, conversazioni e contributi dagli eventi e dai festival Tlon, per restare aggiornati sulle iniziative del progetto e scoprire i temi della divulgazione filosofica.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <p>&copy; 2024 Maura Gancitano. Tutti i diritti riservati.</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://tlon.it" target="_blank">Tlon</a>
+                <a href="https://andreacolamedici.com" target="_blank">Andrea Colamedici</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const header = document.querySelector('header');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            header.classList.toggle('menu-open');
+        });
+
+        // Close menu when link is clicked
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                header.classList.remove('menu-open');
+            });
+        });
+
+        // Intersection Observer for reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Language switcher active state management
+        function setActiveLangSwitch() {
+            const currentPath = window.location.pathname;
+
+            document.querySelectorAll('.lang-switch a').forEach(link => {
+                const href = link.getAttribute('href');
+
+                if (currentPath.includes('/en/') && href.includes('/en/')) {
+                    link.classList.add('active');
+                } else if (currentPath.includes('/es/') && href.includes('/es/')) {
+                    link.classList.add('active');
+                } else if (currentPath.includes('/zh/') && href.includes('/zh/')) {
+                    link.classList.add('active');
+                } else if (!currentPath.includes('/en/') && !currentPath.includes('/es/') && !currentPath.includes('/zh/') && href.includes('podcast.html') && !href.includes('/')) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            document.querySelectorAll('.mobile-lang-switch a').forEach(link => {
+                const href = link.getAttribute('href');
+
+                if (currentPath.includes('/en/') && href.includes('/en/')) {
+                    link.classList.add('active');
+                } else if (currentPath.includes('/es/') && href.includes('/es/')) {
+                    link.classList.add('active');
+                } else if (currentPath.includes('/zh/') && href.includes('/zh/')) {
+                    link.classList.add('active');
+                } else if (!currentPath.includes('/en/') && !currentPath.includes('/es/') && !currentPath.includes('/zh/') && href.includes('podcast.html') && !href.includes('/')) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        }
+        setActiveLangSwitch();
+
+        // Set active nav link
+        function setActiveNav() {
+            const currentPath = window.location.pathname;
+            document.querySelectorAll('nav a').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href && !href.includes('index.html') && !href.includes('http') && currentPath.includes(href)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        setActiveNav();
+    </script>
+
+</body>
+</html>
